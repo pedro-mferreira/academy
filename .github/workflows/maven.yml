@@ -1,7 +1,7 @@
 name: Java CI with Maven
 env:
   docker-image-name: 'academy'
-  docker-tag-name: ''
+  docker-tag-name: 'v1'
   artifact_name: ''
 
 on:
