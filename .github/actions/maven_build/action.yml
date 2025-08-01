@@ -4,8 +4,7 @@ description: 'Run mvn package with preset env vars'
 runs:
   using: 'composite'
   steps:
-    - name: Build with Maven
-      env:
+    - env:
         POSTGRES_DB: postgres
         POSTGRES_USER: postgres
         POSTGRES_PASSWORD: postgres
