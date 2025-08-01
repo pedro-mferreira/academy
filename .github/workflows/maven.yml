@@ -1,6 +1,6 @@
 name: Java CI with Maven
 env:
-  docker-image-name: 'academy'
+  docker-image-name: 'pedromarcelinoferreira489/academy'
   docker-tag-name: 'v1'
   artifact_name: ''
 
@@ -39,7 +39,8 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Save Docker
         run: docker save -o ${{env.docker-image-name}}.tar ${{env.docker-image-name}}:${{env.docker-tag-name}}
-
+      - name: Push Docker image to Docker Hub
+        run: docker push ${{ env.docker-image-name }}:${{ env.docker-tag-name }}
   docker:
     needs: build
     runs-on: ubuntu-latest
