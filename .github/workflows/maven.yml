@@ -28,6 +28,7 @@ jobs:
           path_dockerfile: 'src/main/docker/Dockerfile.jvm'
           image_name: 'academy'
   docker:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: List Docker images
