@@ -30,7 +30,8 @@ jobs:
         uses: ./.github/actions/docker_build
         with:
           path_dockerfile: 'src/main/docker/Dockerfile.jvm'
-          image_name: ${{env.docker-tag-name}}
+          image_name: ${{env.docker-image-name}}
+          tag_name: ${{env.docker-tag-name}}
       - name: Save Docker
         run: docker save -o ${{env.docker-image-name}}.tar ${{env.docker-image-name}}:${{env.docker-tag-name}}
   docker:
