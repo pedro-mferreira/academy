@@ -20,12 +20,7 @@ jobs:
           cache: maven
 
       - name: Build with Maven
-        env:
-          POSTGRES_DB: postgres
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          JDBC_URL: jdbc:postgresql://localhost:5432/postgres
-        run: mvn -B package --file pom.xml
+        uses: ./.github/actions/maven_build
 
       - name: Build Docker image
         run: docker build . --file src/main/docker/Dockerfile.jvm --tag academy:$(date +%s)
