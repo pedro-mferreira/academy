@@ -7,7 +7,7 @@ inputs:
     default: "Dockerfile"
   image_name:
     description: "Image Name "
-    required: false
+    required: true
   tag_name:
     description: "Tag Name"
     required: false
@@ -17,9 +17,9 @@ runs:
   steps:
     - run: | 
         if [ -z "${{ inputs.tag_name }}" ]; then
-          TAG=$(date +%s)
+          export TAG=$(date +%s)
         else
-          TAG="${{ inputs.tag_name }}"
+          export TAG="${{ inputs.tag_name }}"
         fi
         docker build . --file ${{ inputs.path_dockerfile }} --tag ${{ inputs.image_name }}:$TAG
       shell: bash

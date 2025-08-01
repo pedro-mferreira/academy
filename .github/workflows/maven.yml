@@ -23,7 +23,6 @@ jobs:
         uses: ./.github/actions/maven_build
 
       - name: Build Docker image
-
         uses: ./.github/actions/docker_build
         with:
           path_dockerfile: 'src/main/docker/Dockerfile.jvm'
