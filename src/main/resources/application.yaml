@@ -1,0 +1,40 @@
+quarkus:
+  http:
+    cors.enabled: true
+    cors.origins: "*"
+    cors.methods: "GET,POST,PUT,DELETE,OPTIONS"
+    cors.headers: "accept, authorization, content-type"
+    cors.exposed-headers: "*"
+  datasource:
+    db-kind: postgresql
+    devservices:
+      enabled: true
+      reuse: false
+      image-name: "postgres"
+      container-env:
+        POSTGRES_DB: ${POSTGRES_DB}
+        POSTGRES_USER: ${POSTGRES_USER}
+        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      port: 5432
+      volumes:
+        - "db/init-db:/docker-entrypoint-initdb.d"
+    db-name: ${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    jdbc:
+      url: ${JDBC_URL}
+      initial-size: 2
+      min-size: 2
+      max-size: 5
+  liquibase:
+    migrate-at-start: true
+    search-path:
+      - "src/main/resources/db"
+    change-log: "changeLog.xml"
+  hibernate-orm:
+    packages: com.ctw.workstation
+    validate-in-dev-mode: false
+    database:
+      generation: none
+    log:
+      sql: ${hibernate_orm_log_sql:false}
