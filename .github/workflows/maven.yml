@@ -37,8 +37,6 @@ jobs:
         with:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Save Docker
-        run: docker save -o ${{env.docker-image-name}}.tar ${{env.docker-image-name}}:${{env.docker-tag-name}}
       - name: Push Docker image to Docker Hub
         run: docker push ${{ env.docker-image-name }}:${{ env.docker-tag-name }}
   docker:
