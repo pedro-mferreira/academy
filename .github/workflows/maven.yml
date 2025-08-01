@@ -29,3 +29,6 @@ jobs:
 
       - name: Build Docker image
         run: docker build . --file src/main/docker/Dockerfile.jvm --tag academy:$(date +%s)
+
+      - name: List Docker images
+        run: docker image ls
